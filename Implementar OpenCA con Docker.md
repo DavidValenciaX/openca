@@ -51,9 +51,6 @@ apt-get install -y \
     gettext \
     pkg-config \
     libperl-dev \
-    libmysqlclient-dev \
-    libdbi-perl \
-    libdbd-mysql-perl \
     libssl-dev \
     libssl-doc \
     libsslcommon2-dev \
@@ -71,8 +68,13 @@ apt-get install -y \
 ### 3.3 Instalar MySQL
 
 ```bash
+apt-get update
 apt-get install -y \
-    mysql-server
+    libmysqlclient-dev \
+    libdbi-perl \
+    libdbd-mysql-perl \
+    mysql-server \
+    mysql-client
 ```
 
 ### 3.3.1 Configurar MySQL
@@ -143,15 +145,14 @@ git clone https://github.com/openca/openca-base.git
 cd openca-base
 
 # Configurar OpenCA
-  ./configure --prefix=/usr/local/openca \
-      --with-httpd-user=www-data \
-      --with-httpd-group=www-data \
-      --with-web-host=localhost \
-      --with-ca-organization="Universidad Surcolombiana" \
-      --with-ca-country=CO \
-      --with-ca-state="Huila" \
-      --with-ca-locality="Neiva" \
-      --with-perl-modules=no
+./configure --prefix=/usr/local/openca \
+    --with-httpd-user=www-data \
+    --with-httpd-group=www-data \
+    --with-web-host=localhost \
+    --with-ca-organization="Universidad Surcolombiana" \
+    --with-ca-country=CO \
+    --with-ca-state="Huila" \
+    --with-ca-locality="Neiva"
 
 # Compilar e instalar
 make

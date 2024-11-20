@@ -76,7 +76,8 @@ apt-get install -y \
     libparse-recdescent-perl \
     liburi-perl \
     libxml-twig-perl \
-    libintl-perl
+    libintl-perl \
+    libdbi-perl
 ```
 
 ### 3.4 Instalar Postgresql
@@ -136,34 +137,6 @@ cd openca-base
 
 # Compilar e instalar
 make
-make install
 make install-offline
 make install-online
-```
-
-## 7. **Configurar Variables de Entorno**
-
-Añadir al archivo ~/.bashrc:
-
-```bash
-echo 'export PATH="/usr/local/openca/bin:$PATH"' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH="/usr/local/openca/lib"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-## 8. **Persistir los Cambios**
-
-Para guardar el estado del contenedor como una nueva imagen:
-
-```bash
-# Desde otra terminal (fuera del contenedor)
-docker commit openca-container openca-image:1.0.0
-```
-
-## 9. **Iniciar el Contenedor**
-
-Para futuros usos, puedes iniciar un nuevo contenedor basado en la imagen guardada:
-
-```bash
-docker run -it --name openca-new openca-image:1.0.0
 ```

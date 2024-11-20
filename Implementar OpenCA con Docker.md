@@ -79,31 +79,6 @@ apt-get install -y \
     libintl-perl
 ```
 
-### 3.3 Instalar MySQL
-
-```bash
-apt-get update
-apt-get install -y \
-    libmysqlclient-dev \
-    libdbi-perl \
-    libdbd-mysql-perl \
-    mysql-server \
-    mysql-client
-```
-
-### 3.3.1 Configurar MySQL
-
-```bash
-# Asegurarse de que el directorio de inicio del usuario mysql esté configurado
-usermod -d /var/lib/mysql mysql
-
-# Intentar iniciar MySQL nuevamente
-service mysql start
-
-# Verificar el estado
-service mysql status
-```
-
 ### 3.4 Instalar Postgresql
 
 ```bash
@@ -122,14 +97,6 @@ apt-get install -y \
 29. para Timezone Bogota
 ```
 
-## 4. **Crear y Configurar el Espacio de Trabajo**
-
-```bash
-# Crear directorio de trabajo
-mkdir -p /workspace
-cd /workspace
-```
-
 ## 5. **Descargar e instalar OpenCA-Tools**
 
 ```bash
@@ -140,8 +107,7 @@ cd openca-tools
 
 ```bash
 # Configurar y compilar
-./configure --prefix=/usr/local/openca \
-    --with-openssl-prefix=/usr/lib/ssl
+./configure
 
 # Compilar e instalar
 make
@@ -171,6 +137,8 @@ cd openca-base
 # Compilar e instalar
 make
 make install
+make install-offline
+make install-online
 ```
 
 ## 7. **Configurar Variables de Entorno**

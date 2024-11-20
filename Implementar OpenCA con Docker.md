@@ -62,7 +62,21 @@ apt-get install -y \
     libapache2-mod-perl2 \
     cpanminus \
     libdb-dev \
-    libdb++-dev
+    libdb++-dev \
+    libauthen-sasl-perl \
+    libconvert-asn1-perl \
+    libdigest-hmac-perl \
+    libdigest-sha-perl \
+    libencode-locale-perl \
+    libio-socket-ssl-perl \
+    libmime-base64-perl \
+    libmime-lite-perl \
+    libmime-tools-perl \
+    libnet-ldap-perl \
+    libparse-recdescent-perl \
+    liburi-perl \
+    libxml-twig-perl \
+    libintl-perl
 ```
 
 ### 3.3 Instalar MySQL

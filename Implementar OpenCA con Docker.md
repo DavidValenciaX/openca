@@ -33,8 +33,8 @@ apt-get install -y \
     libxml2-dev virtualenv python3 python3-pip python3-tabulate \
     cmake ninja-build python3-pytest \
     python3-jinja2 python3-yaml apt-utils \
-    apt-transport-https curl wget uuid-dev \
-    git git-crypt git-repair git-review \
+    apt-transport-https uuid-dev \
+    git-crypt git-repair git-review \
     netcat-traditional arping 2ping ssh \
     gcc gdb lldb clang ssh libreadline-dev zlib1g-dev \
     libssl-dev
@@ -43,17 +43,24 @@ apt-get install -y \
 ### 3.2 Instalar Berkeley DB y módulos Perl necesarios
 
 ```bash
-apt-get install -y build-essential libperl-dev
-```
-
-```bash
 apt-get install -y \
-    libdb-dev \
-    libdb5.3-dev \
-    perl-modules \
-    libdb-dev \
+    build-essential \
+    libperl-dev \
+    libmysqlclient-dev \
+    libdbi-perl \
     libdbd-mysql-perl \
-    libdbi-perl
+    libssl-dev \
+    libssl-doc \
+    libsslcommon2-dev \
+    automake \
+    autoconf \
+    libtool \
+    cpanminus \
+    libltdl-dev \
+    gettext \
+    pkg-config \
+    libdb-dev \
+    libdb++-dev
 ```
 
 ### 3.3 Instalar MySQL
@@ -65,30 +72,16 @@ apt-get install -y \
     libdbd-mysql-perl
 ```
 
-### 3.3.1 Cambiar el directorio de inicio del usuario mysql a /var/lib/mysql
+### 3.3.1 Configurar MySQL
 
 ```bash
-
-# 1. Borrar los directorios existentes
-rm -rf /var/lib/mysql/*
-
-# 2. Crear los directorios necesarios
-mkdir -p /var/lib/mysql
-
-# 3. Establecer los permisos correctos
-chown -R mysql:mysql /var/lib/mysql
-chmod 777 /var/lib/mysql
-
-# 4. Asegurarse de que el directorio de inicio del usuario mysql esté configurado
+# Asegurarse de que el directorio de inicio del usuario mysql esté configurado
 usermod -d /var/lib/mysql mysql
 
-# 5. Inicializar la base de datos de MySQL (si no se ha hecho antes)
-mysqld --initialize-insecure --user=mysql
-
-# 6. Intentar iniciar MySQL nuevamente
+# Intentar iniciar MySQL nuevamente
 service mysql start
 
-# 7. Verificar el estado
+# Verificar el estado
 service mysql status
 ```
 
@@ -154,9 +147,7 @@ cd openca-base
     --with-ca-organization="Universidad Surcolombiana" \
     --with-ca-country=CO \
     --with-ca-state="Huila" \
-    --with-ca-locality="Neiva" \
-    --with-mysql-prefix=/usr \
-    --with-pgsql-prefix=/usr
+    --with-ca-locality="Neiva"
 
 # Compilar e instalar
 make

@@ -36,8 +36,7 @@ apt-get install -y \
     apt-transport-https uuid-dev \
     git-crypt git-repair git-review \
     netcat-traditional arping 2ping ssh \
-    gcc gdb lldb clang ssh libreadline-dev zlib1g-dev \
-    libssl-dev
+    gcc gdb lldb clang ssh libreadline-dev zlib1g-dev
 ```
 
 ### 3.2 Instalar Berkeley DB y módulos Perl necesarios
@@ -45,6 +44,12 @@ apt-get install -y \
 ```bash
 apt-get install -y \
     build-essential \
+    autoconf \
+    automake \
+    libtool \
+    libltdl-dev \
+    gettext \
+    pkg-config \
     libperl-dev \
     libmysqlclient-dev \
     libdbi-perl \
@@ -52,13 +57,13 @@ apt-get install -y \
     libssl-dev \
     libssl-doc \
     libsslcommon2-dev \
-    automake \
-    autoconf \
-    libtool \
+    libdbd-pg-perl \
+    libnet-ssleay-perl \
+    libcgi-session-perl \
+    libxml-libxml-perl \
+    libxml-parser-perl \
+    libapache2-mod-perl2 \
     cpanminus \
-    libltdl-dev \
-    gettext \
-    pkg-config \
     libdb-dev \
     libdb++-dev
 ```
@@ -67,9 +72,7 @@ apt-get install -y \
 
 ```bash
 apt-get install -y \
-    mysql-server \
-    libmysqlclient-dev \
-    libdbd-mysql-perl
+    mysql-server
 ```
 
 ### 3.3.1 Configurar MySQL
@@ -140,14 +143,15 @@ git clone https://github.com/openca/openca-base.git
 cd openca-base
 
 # Configurar OpenCA
-./configure --prefix=/usr/local/openca \
-    --with-httpd-user=www-data \
-    --with-httpd-group=www-data \
-    --with-web-host=localhost \
-    --with-ca-organization="Universidad Surcolombiana" \
-    --with-ca-country=CO \
-    --with-ca-state="Huila" \
-    --with-ca-locality="Neiva"
+  ./configure --prefix=/usr/local/openca \
+      --with-httpd-user=www-data \
+      --with-httpd-group=www-data \
+      --with-web-host=localhost \
+      --with-ca-organization="Universidad Surcolombiana" \
+      --with-ca-country=CO \
+      --with-ca-state="Huila" \
+      --with-ca-locality="Neiva" \
+      --with-perl-modules=no
 
 # Compilar e instalar
 make

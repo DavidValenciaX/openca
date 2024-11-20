@@ -129,14 +129,45 @@ cd openca-base
 ./configure --prefix=/usr/local/openca \
     --with-httpd-user=www-data \
     --with-httpd-group=www-data \
+    --with-openca-user=openca \
+    --with-openca-group=openca \
     --with-web-host=localhost \
+    --with-htdocs-fs-prefix=/var/www/html/pki \
+    --with-htdocs-url-prefix=/pki \
+    --with-cgi-fs-prefix=/usr/lib/cgi-bin/pki \
+    --with-cgi-url-prefix="/cgi-bin/pki" \
     --with-ca-organization="Universidad Surcolombiana" \
     --with-ca-country=CO \
     --with-ca-state="Huila" \
-    --with-ca-locality="Neiva"
+    --with-ca-locality="Neiva" \
+    --disable-external-modules
+
+# Crear grupo openca
+groupadd openca
+
+# Crear usuario openca y agregarlo al grupo openca
+useradd -g openca openca
 
 # Compilar e instalar
 make
 make install-offline
 make install-online
+```
+
+## 7. **Configurar OpenCA**
+
+```bash
+# Crear el archivo de configuración
+cp /usr/local/openca/etc/openca/etc/openca
+
+# ejecutar configure_etc.sh
+./configure_etc
+```
+
+## 8. **Iniciar OpenCA**
+
+```bash
+# Iniciar OpenCA
+cd /usr/local/openca
+./etc/init.d/openca start
 ```
